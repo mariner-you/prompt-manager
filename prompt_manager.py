@@ -9,18 +9,6 @@ def show_menu():
     print("7. 즐겨찾기 목록")
     print("0. 종료")
 
-while True:
-    show_menu()
-    choice = input("선택: ")
-
-    if choice == "0":
-        print("프로그램을 종료합니다.")
-        break
-    elif choice in ["1", "2", "3", "4", "5", "6", "7"]:
-        print("선택한 기능을 실행합니다.")
-    else:
-        print("잘못된 번호입니다. 다시 선택해주세요.")
-
 prompts = [
     {
         "title": "루네아 프리미엄 자수실 광고 기획",
@@ -42,3 +30,64 @@ prompts = [
     }
 ]
 
+def add_prompt():
+    while True:
+        title = input("제목: ")
+
+        if title != "":
+            break
+
+        print("제목을 입력해주세요.")
+        
+    while True:
+        content = input("내용: ")
+
+        if content != "":
+            break
+
+        print("내용을 입력해주세요.")
+        
+    print("카테고리를 선택하세요.")
+    print("1. 텍스트 생성")
+    print("2. 이미지 생성")
+    print("3. 영상 생성")
+    print("4. 페르소나")
+    print("5. 자동화")
+    print("6. 기타")
+
+    category = input("카테고리 번호: ")
+    if category == "1":
+        category = "텍스트 생성"
+    elif category == "2":
+        category = "이미지 생성"
+    elif category == "3":
+        category = "영상 생성"
+    elif category == "4":
+        category = "페르소나"
+    elif category == "5":
+        category = "자동화"
+    elif category == "6":
+        category = "기타"
+        
+    new_prompt = {
+        "title": title,
+        "content": content,
+        "category": category,
+        "favorite": False
+    }
+    prompts.append(new_prompt)
+    print("프롬프트가 추가되었습니다!")
+    
+while True:
+    show_menu()
+    choice = input("선택: ")
+
+    if choice == "0":
+        print("프로그램을 종료합니다.")
+        break
+    elif choice == "1":
+        add_prompt()
+    elif choice in ["2", "3", "4", "5", "6", "7"]:
+        print("선택한 기능을 실행합니다.")
+    else:
+        print("잘못된 번호입니다. 다시 선택해주세요.")
