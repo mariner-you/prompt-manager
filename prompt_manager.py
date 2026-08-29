@@ -13,7 +13,7 @@ prompts = [
     {
         "title": "루네아 프리미엄 자수실 광고 기획",
         "content": "안녕, 오늘 너는 나의 광고 제작 엔지니어야. 내가 제공하는 정보로 광고를 완성하는 전문가가 너를 도와줄 준비가 되었니? 나는 프랑스자수 놓을 때 사용하는 프리미엄 실을 광고로 만들고 싶어. 제품 이름은 '루네아'. 타겟은 자수를 놓는 사람들 모두야. 이 제품의 특징은 실의 꼬임은 단단하지만 부드럽고, 아주 우아한 광택을 가지고 있어. USP는 섬세한 색감과 조화로운 컬러, 우아하고 은은한 광택으로 작품의 가치를 높이는 프리미엄 자수실이라는 점을 강조하고 싶어. 톤앤매너는 우아함, 섬세함, 야무짐이야. 핵심 메시지는 '한 올의 섬세함이 작품의 가치를 완성합니다.'",
-        "category": "페르소나",
+        "category": "이미지 생성",
         "favorite": False
     },
         {
@@ -88,6 +88,31 @@ def show_list():
         star = "⭐" if prompt["favorite"] else ""
         print(f"{number}. {title} / {category} {star}")
 
+def show_by_category():
+    print("=== 카테고리별 조회 ===")
+    print("1. 이미지 생성")
+    print("2. 텍스트 생성")
+    print("3. 자동화")
+    print("4. 기타")
+    category_choice = input("카테고리를 선택하세요: ") 
+    if category_choice == "1":
+        selected_category = "이미지 생성"
+    elif category_choice == "2":
+        selected_category = "텍스트 생성"
+    elif category_choice == "3":
+        selected_category = "자동화"
+    elif category_choice == "4":
+        selected_category = "기타"
+        
+    found = False
+    
+    for prompt in prompts:
+        if prompt["category"] == selected_category:
+           found = True    
+           print(prompt["title"])
+           
+    if not found:
+        print("해당 카테고리에 등록된 프롬프트가 없습니다.")       
 while True:
     show_menu()
     choice = input("메뉴를 선택하세요: ")
@@ -96,6 +121,8 @@ while True:
         add_prompt()
     elif choice == "2":
         show_list()
+    elif choice == "3":
+        show_by_category()
     elif choice == "0":
         print("프로그램을 종료합니다.")
         break
