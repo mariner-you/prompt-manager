@@ -112,7 +112,21 @@ def show_by_category():
            print(prompt["title"])
            
     if not found:
-        print("해당 카테고리에 등록된 프롬프트가 없습니다.")       
+        print("해당 카테고리에 등록된 프롬프트가 없습니다.")  
+        
+def search_prompts():
+    print("=== 프롬프트 검색 ===") 
+    keyword = input("검색어를 입력하세요: ")      
+    found = False
+    
+    for prompt in prompts:
+        if keyword in prompt["title"]:  
+            found = True
+            print(prompt["title"]) 
+            
+    if not found:
+        print("검색 결과가 없습니다.") 
+             
 while True:
     show_menu()
     choice = input("메뉴를 선택하세요: ")
@@ -123,6 +137,8 @@ while True:
         show_list()
     elif choice == "3":
         show_by_category()
+    elif choice == "4":
+        search_prompts()
     elif choice == "0":
         print("프로그램을 종료합니다.")
         break
