@@ -78,16 +78,26 @@ def add_prompt():
     prompts.append(new_prompt)
     print("프롬프트가 추가되었습니다!")
     
+def show_list():
+    if not prompts:
+     print("등록된 프롬프트가 없습니다.")
+     return
+    for number, prompt in enumerate(prompts, start=1):
+        title = prompt["title"]
+        category = prompt["category"]
+        star = "⭐" if prompt["favorite"] else ""
+        print(f"{number}. {title} / {category} {star}")
+
 while True:
     show_menu()
-    choice = input("선택: ")
+    choice = input("메뉴를 선택하세요: ")
 
-    if choice == "0":
+    if choice == "1":
+        add_prompt()
+    elif choice == "2":
+        show_list()
+    elif choice == "0":
         print("프로그램을 종료합니다.")
         break
-    elif choice == "1":
-        add_prompt()
-    elif choice in ["2", "3", "4", "5", "6", "7"]:
-        print("선택한 기능을 실행합니다.")
     else:
-        print("잘못된 번호입니다. 다시 선택해주세요.")
+        print("올바른 메뉴 번호를 입력해주세요.")
