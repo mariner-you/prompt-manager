@@ -120,7 +120,7 @@ def search_prompts():
     found = False
     
     for prompt in prompts:
-        if keyword in prompt["title"]:  
+        if keyword in prompt["title"] or keyword in prompt["content"]:  
             found = True
             print(prompt["title"]) 
             
