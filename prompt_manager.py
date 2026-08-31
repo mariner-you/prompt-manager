@@ -1,3 +1,4 @@
+import json
 def show_menu():
     print("=== 나만의 프롬프트 관리 ===")
     print("1. 프롬프트 추가")
@@ -30,6 +31,19 @@ prompts = [
     }
 ]
 
+def save_prompts():
+    with open("prompts.json", "w", encoding="utf-8") as file:
+        json.dump(prompts, file, ensure_ascii=False, indent=4)
+
+def load_prompts():
+    try:
+        with open("prompts.json", "r", encoding="utf-8") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return prompts
+    
+prompts = load_prompts()
+    
 def add_prompt():
     while True:
         title = input("제목: ")
@@ -76,6 +90,7 @@ def add_prompt():
         "favorite": False
     }
     prompts.append(new_prompt)
+    save_prompts()
     print("프롬프트가 추가되었습니다!")
     
 def show_list():
